@@ -2,6 +2,7 @@ import { Button, Container, FormControl, TextField } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
+
 import * as Yup from "yup";
 import { CustomerInfoProps } from "../..";
 import { Customer } from "../../../services/api/addCustomer";
@@ -36,7 +37,10 @@ function CustomerEdit() {
           address: formik.values.address,
           mobile: formik.values.mobile,
         })
-          .then((res) => alert(`Customer edited successfuly`))
+          .then((res) => {
+            alert(`Customer edited successfuly`);
+            router.push("http://localhost:3001/customers");
+          })
           .catch((res) => alert(`edit failed`));
       } else {
         alert(`Phone Number does not match country format `);
